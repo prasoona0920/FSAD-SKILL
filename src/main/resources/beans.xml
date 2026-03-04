@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="studentConstructor" class="com.klu.SpringProject.Student">
+        <constructor-arg value="101"/>
+        <constructor-arg value="Alice"/>
+        <constructor-arg value="Computer Science"/>
+        <constructor-arg value="2nd Year"/>
+    </bean>
+
+    <bean id="studentSetter" class="com.klu.SpringProject.Student">
+        <property name="studentId" value="102"/>
+        <property name="name" value="Bob"/>
+        <property name="course" value="Mechanical"/>
+        <property name="year" value="3rd Year"/>
+    </bean>
+
+</beans>
