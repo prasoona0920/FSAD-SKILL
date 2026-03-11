@@ -1,0 +1,59 @@
+package com.example.library.controller;
+
+import com.example.library.model.Book;
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+public class LibraryController {
+    private List<Book> bookList = new ArrayList<>();
+
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "Welcome to the Online Library!";
+    }
+
+    @GetMapping("/count")
+    public int countBooks() {
+        return bookList.size();
+    }
+
+    @GetMapping("/price")
+    public double bookPrice() {
+        return 199.99;
+    }
+
+    @GetMapping("/books")
+    public List<String> listBooks() {
+        List<String> titles = new ArrayList<>();
+        for(Book b : bookList) titles.add(b.getTitle());
+        return titles;
+    }
+
+    @GetMapping("/books/{id}")
+    public Book getBook(@PathVariable int id) {
+        return bookList.stream().filter(b -> b.getId() == id).findFirst().orElse(null);
+    }
+
+    @GetMapping("/search")
+    public String searchBook(@RequestParam String title) {
+        return "Search requested for book: " + title;
+    }
+
+    @GetMapping("/author/{name}")
+    public String authorInfo(@PathVariable String name) {
+        return "Author details for: " + name;
+    }
+
+    @PostMapping("/addbook")
+    public String addBook(@RequestBody Book book) {
+        bookList.add(book);
+        return "Book added successfully: " + book.getTitle();
+    }
+
+    @GetMapping("/viewbooks")
+    public List<Book> viewBooks() {
+        return bookList;
+    }
+}

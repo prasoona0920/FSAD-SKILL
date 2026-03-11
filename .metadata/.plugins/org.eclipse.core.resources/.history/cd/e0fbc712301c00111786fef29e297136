@@ -1,0 +1,25 @@
+package com.klef.fsadexam;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/invoice")
+public class InvoiceController {
+
+    @Autowired
+    private InvoiceService service;
+
+    // POST → Add Invoice
+    @PostMapping("/add")
+    public Invoice addInvoice(@RequestBody Invoice invoice) {
+        return service.addInvoice(invoice);
+    }
+
+    // GET → Fetch all invoices
+    @GetMapping("/all")
+    public List<Invoice> getInvoices() {
+        return service.getAllInvoices();
+    }
+}
